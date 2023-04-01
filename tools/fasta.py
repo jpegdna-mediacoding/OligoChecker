@@ -5,7 +5,10 @@ def get_oligos(fasta_file):
         tmp_data = f.readlines()
     for line in tmp_data:
         if line[0] in ["A", "T", "C", "G"]:
-            data.append(line)
+            if line[-1] == "\n":
+                data.append(line[:-1])
+            else:
+                data.append(line)
         elif line[0] == ">":
             headers.append(line[:-1])
     return data
